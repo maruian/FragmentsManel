@@ -36,7 +36,6 @@ public class Fragment1 extends Fragment {
                 fm = getFragmentManager();
                 ft = fm.beginTransaction();
                 ft.add(R.id.canto_superior_dret,Fragment2.newInstance("",""));
-                //ft.addToBackStack(null);
                 ft.commit();
             }
         });

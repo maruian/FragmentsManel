@@ -80,10 +80,11 @@ public class Fragment2 extends Fragment {
             public void onClick(View v) {
                 fm = getFragmentManager();
                 ft = fm.beginTransaction();
+                //si
                 if (!mListener.estaFragment3EnActivity()) {
                     Toast.makeText(getContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.add(R.id.canto_inferior_dret, Fragment3.newInstance("", ""));
-                    //ft.addToBackStack(null);
+
 
                 }else{
                     Toast.makeText(getContext(), "Amagant Fragment3", Toast.LENGTH_SHORT).show();
@@ -131,8 +132,8 @@ public class Fragment2 extends Fragment {
      */
     public interface OnFragmentInteractionListener2 {
         // TODO: Update argument type and name
-        public void onFragmentInteraction2(Uri uri);
-        public boolean estaFragment3EnActivity();
+         void onFragmentInteraction2(Uri uri);
+         boolean estaFragment3EnActivity();
     }
 
 
