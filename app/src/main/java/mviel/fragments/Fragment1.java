@@ -65,11 +65,13 @@ public class Fragment1 extends Fragment {
                 if (mListener.estaFragment2EnActivity()){
                     Toast.makeText(getActivity(),"Borrant Fragment 2",Toast.LENGTH_SHORT).show();
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_superior_dret));
+                    fm.popBackStack(); //si no afegeisc aquesta linea de codi el programa no funciona correctament
                 }
 
                 if (mListener.estaFragment3EnActivity()){
                     Toast.makeText(getActivity(),"Borrant Fragment 3",Toast.LENGTH_SHORT).show();
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
+                    fm.popBackStack(); //si no afegeisc aquesta linea de codi el programa no funciona correctament
                 }
                 ft.commit();
 

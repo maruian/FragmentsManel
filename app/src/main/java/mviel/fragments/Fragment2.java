@@ -34,7 +34,7 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private int contador=0;
+    private int contador;
     private OnFragmentInteractionListener2 mListener;
     private Comunicador c;
 
@@ -76,7 +76,7 @@ public class Fragment2 extends Fragment {
         View v= inflater.inflate(R.layout.fragment_fragment2, container, false);
 
         FrameLayout fl = (FrameLayout) v.findViewById(R.id.FrameLayout1);
-
+        contador=MainActivity.contador;
         fl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,6 @@ public class Fragment2 extends Fragment {
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
                     fm.popBackStack(); //si no afegeisc aquesta linea de codi el programa no funciona correctament
                 }
-
 
                 ft.commit();
             }
