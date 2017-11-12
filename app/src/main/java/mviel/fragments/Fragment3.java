@@ -1,14 +1,17 @@
 package mviel.fragments;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -28,6 +31,11 @@ public class Fragment3 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView tvCont;
+
+    private FragmentManager fm;
+    private FragmentTransaction ft;
 
     private OnFragmentInteractionListener3 mListener;
 
@@ -59,6 +67,7 @@ public class Fragment3 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -66,9 +75,13 @@ public class Fragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_fragment3, container, false);
+        View v = inflater.inflate(R.layout.fragment_fragment3, container, false);
+
+        tvCont = (TextView)v.findViewById(R.id.contador);
+        tvCont.setText("Cuenta: "+MainActivity.contador);
 
         return v;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,7 +90,11 @@ public class Fragment3 extends Fragment {
             mListener.onFragmentInteraction3(uri);
         }
     }
-
+/*
+    public void cambiarContador(String texto){
+        contador.setText(texto);
+    }
+*/
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

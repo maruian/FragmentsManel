@@ -6,11 +6,11 @@ import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -34,7 +34,9 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private int contador=0;
     private OnFragmentInteractionListener2 mListener;
+    private Comunicador c;
 
     /**
      * Use this factory method to create a new instance of
@@ -78,21 +80,26 @@ public class Fragment2 extends Fragment {
         fl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fm = getFragmentManager();
+                contador++;
+                fm = getActivity().getFragmentManager();
                 ft = fm.beginTransaction();
                 //si
                 if (!mListener.estaFragment3EnActivity()) {
+                    c = (Comunicador)getActivity(); // Perque he de asignarli a c el comunicador si per a mListener no he tingut que inicialitzar res? Es perque ja ho fa AndroidStudio?
                     Toast.makeText(getContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.add(R.id.canto_inferior_dret, Fragment3.newInstance("", ""));
-
-
+                    ft.addToBackStack(null);
+                    c.comunicat(contador);
                 }else{
                     Toast.makeText(getContext(), "Amagant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
+                    fm.popBackStack(); //si no afegeisc aquesta linea de codi el programa no funciona correctament
                 }
+
+
                 ft.commit();
             }
-    });
+        });
         return v;
     }
 
@@ -135,6 +142,12 @@ public class Fragment2 extends Fragment {
          void onFragmentInteraction2(Uri uri);
          boolean estaFragment3EnActivity();
     }
+
+    //Declaro una interfaz comunicador que debera implementar el metodo comunicat
+    public interface Comunicador{
+        void comunicat(int cont);
+    }
+
 
 
 
