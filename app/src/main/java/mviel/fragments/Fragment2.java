@@ -37,6 +37,7 @@ public class Fragment2 extends Fragment {
     private int contador;
     private OnFragmentInteractionListener2 mListener;
     private Comunicador c;
+    FrameLayout fl;
 
     /**
      * Use this factory method to create a new instance of
@@ -74,14 +75,20 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_fragment2, container, false);
+        fl = (FrameLayout) v.findViewById(R.id.FrameLayout1);
+        return v;
+    }
 
-        FrameLayout fl = (FrameLayout) v.findViewById(R.id.FrameLayout1);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        fm = getActivity().getFragmentManager();
+
         contador=MainActivity.contador;
         fl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 contador++;
-                fm = getActivity().getFragmentManager();
                 ft = fm.beginTransaction();
                 //si
                 if (!mListener.estaFragment3EnActivity()) {
@@ -99,7 +106,8 @@ public class Fragment2 extends Fragment {
                 ft.commit();
             }
         });
-        return v;
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

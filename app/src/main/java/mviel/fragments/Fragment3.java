@@ -78,7 +78,6 @@ public class Fragment3 extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
         tvCont = (TextView)v.findViewById(R.id.contador);
-        tvCont.setText("Cuenta: "+MainActivity.contador);
 
         return v;
 
@@ -90,11 +89,13 @@ public class Fragment3 extends Fragment {
             mListener.onFragmentInteraction3(uri);
         }
     }
-/*
-    public void cambiarContador(String texto){
-        contador.setText(texto);
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        tvCont.setText("Contador: "+MainActivity.contador);
     }
-*/
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
